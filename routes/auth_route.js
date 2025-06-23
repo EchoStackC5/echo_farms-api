@@ -5,4 +5,4 @@ export const authRouter = Router();
 
 authRouter.post('/signup',signUp);
 
-authRouter.get('/login',login);
+authRouter.post('/login',login);
