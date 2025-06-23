@@ -9,10 +9,13 @@ import {
 
 import { authenticate } from "../middleware/authenticate.js"
 import { hasPermission } from "../middleware/authenticate.js";
+import { multipleImages } from "../middleware/mutler.js";
 
 export const adRouter = Router();
 
-adRouter.post("/adverts", authenticate, hasPermission("create_advert"), createAdvert);
+
+// console.log('jikjo',multipleImages.array('images', 5))
+adRouter.post("/adverts", authenticate, hasPermission("create_advert"), multipleImages.array('images', 5), createAdvert);
 adRouter.get("/adverts", getAllAdverts);
 adRouter.get("/adverts/:id", getAdvertById);
 adRouter.patch("/adverts/:id", authenticate, hasPermission("update_advert"), updateAdvert);

@@ -1,0 +1,32 @@
+import multer from "multer";
+import { CloudinaryStorage } from "multer-storage-cloudinary";
+
+import { v2 as cloudinary } from "cloudinary";
+
+cloudinary.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+
+
+
+
+const storage = new CloudinaryStorage({
+    cloudinary,
+    params: {
+       
+        allowed_formats: ["jpg", "png", "jpeg", "mp4", "gif"],
+      
+  
+    },
+});
+
+
+console.log('st', storage)
+
+
+export const multipleImages = multer({ storage });
+
+

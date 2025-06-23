@@ -24,16 +24,25 @@ const advertSchema = new Schema({
     type: Number,
     required: true,
   },
-  photos: [
+  images:
     {
-      type: String, // URLs of images
-    }
-  ],
+      type: [{
+        url: {
+         type: String,
+        }
+        
+      }],
+     
+    },
+
+
+  
   plan: {
     type: String,
     enum: ['Free Trial', 'Basic', 'Enterprise'],
     required: true,
   },
+  
   expiresAt: {
     type: Date,
     required: true,

@@ -9,6 +9,6 @@ export const mongoURI = process.env.MONGO_URI
 
 export const secret = process.env.JWT_SECRET
 
-export const SMTP_USER = process.env.SMTP_USER
+// export const SMTP_USER = process.env.SMTP_USER
 
-export const SMTP_PASS = process.env.SMTP_PASS
+// export const SMTP_PASS = process.env.SMTP_PASS
