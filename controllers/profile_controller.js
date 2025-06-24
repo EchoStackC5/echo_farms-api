@@ -4,7 +4,7 @@ import { User } from '../models/user_model.js';
 export const getProfileNames = async (req, res) => {
   try {
     // The 'protect' middleware (or similar) should attach the authenticated user's ID to req.user.id
-    const userId = req.user.id; // Or req.user._id, depending on how your middleware sets it
+    const userId = req.user._id || req.user.id; // Or req.user._id, depending on how your middleware sets it
 
     // Find the user by ID and select only firstName and lastName
     const user = await User.findById(userId).select('firstName lastName -_id'); // -_id excludes the _id field

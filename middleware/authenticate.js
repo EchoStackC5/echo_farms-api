@@ -29,3 +29,5 @@ export const hasPermission = (permission) => {
     return res.status(403).json({ error: "Not authorized" });
   };
 };
+
+
