@@ -3,7 +3,6 @@ import { Advert } from "../models/ad _model.js";
 // POST /adverts - Create Advert
 export const createAdvert = async (req, res) => {
 
-  console.log('yyyy', req.files)
   try {
     const {
       productTitle,
@@ -36,11 +35,6 @@ export const createAdvert = async (req, res) => {
   
       
     }))
-
-
-
-    console.log('ygyhi', uploaded)
-
 
 
     // Assign vendor from JWT token

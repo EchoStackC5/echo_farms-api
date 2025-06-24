@@ -11,10 +11,12 @@ const app = express()
 const PORT = 1010
 
 app.use(express.json())
+app.use(cors())
 app.use('/api/v1', adRouter);
 app.use('/api/v1/auth', authRouter);
+app.use('/api/v1', authRouter);
 
-app.use(cors())
+
 
 const mongo_URI = process.env.MONGO_URI
 
