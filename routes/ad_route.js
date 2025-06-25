@@ -4,7 +4,8 @@ import {
   getAllAdverts,
   getAdvertById,
   updateAdvert,
-  deleteAdvert
+  deleteAdvert,
+  getAdvertsByVendor,
 } from "../controllers/ad_controller.js";
 
 import { authenticate } from "../middleware/authenticate.js"
@@ -18,6 +19,7 @@ export const adRouter = Router();
 adRouter.post("/adverts", authenticate, hasPermission("create_advert"), multipleImages.array('images', 5), createAdvert);
 adRouter.get("/adverts", getAllAdverts);
 adRouter.get("/adverts/:id", getAdvertById);
+adRouter.get("/adverts/vendor/dashboard", authenticate, hasPermission("view_vendor_ads"), getAdvertsByVendor);
 adRouter.patch("/adverts/:id", authenticate, hasPermission("update_advert"), updateAdvert);
 adRouter.delete("/adverts/:id", authenticate, hasPermission("delete_advert"), deleteAdvert);
 

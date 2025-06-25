@@ -112,6 +112,23 @@ export const getAdvertById = async (req, res) => {
   }
 };
 
+// GET /adverts/:id - Get Single Advert by Vendor
+export const getAdvertsByVendor = async (req, res) => {
+  try {
+    const vendorId = req.user._id; // Vendor ID comes from the token
+
+    const adverts = await Advert.find({ vendor: vendorId });
+
+    res.status(200).json(adverts);
+  } catch (error) {
+    res.status(500).json({
+      error: "Failed to retrieve vendor adverts",
+      details: error.message,
+    });
+  }
+};
+
+
 // PATCH /adverts/:id - Update Advert
 export const updateAdvert = async (req, res) => {
   const { id } = req.params;

@@ -1,7 +1,9 @@
 export const roles = [
   {
     role: "vendor",
-    permissions: ["create_advert", "update_advert", "delete_advert"]
+    permissions: ["create_advert", "update_advert", "delete_advert",
+      "view_vendor_ads"
+    ]git 
   },
   {
     role: "user",
@@ -13,11 +15,11 @@ export const roles = [
   }
 ];
 
-export function checkPermission (role, action){
-    if (role === 'vendor') {
-        return permission.admin.includes(action);
-    } else if (role === 'user') {
-        return permission.tenant.includes(action);
-    }
-    return false;
+export function checkPermission(role, action) {
+  if (role === 'vendor') {
+    return permission.admin.includes(action);
+  } else if (role === 'user') {
+    return permission.tenant.includes(action);
+  }
+  return false;
 }
