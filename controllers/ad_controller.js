@@ -70,12 +70,35 @@ export const createAdvert = async (req, res) => {
 // GET /adverts - Get All Adverts
 export const getAllAdverts = async (req, res) => {
   try {
-    const adverts = await Advert.find();
+    const { productTitle, category, minPrice, maxPrice, location } = req.query;
+
+    const filter = {};
+
+    if (productTitle) {
+      filter.productTitle = { $regex: productTitle, $options: "i" }; // case-insensitive
+    }
+
+    if (category) {
+      filter.category = category;
+    }
+
+    if (location) {
+      filter.location = { $regex: location, $options: "i" };
+    }
+
+    if (minPrice || maxPrice) {
+      filter.price = {};
+      if (minPrice) filter.price.$gte = Number(minPrice);
+      if (maxPrice) filter.price.$lte = Number(maxPrice);
+    }
+
+    const adverts = await Advert.find(filter);
     res.status(200).json(adverts);
   } catch (error) {
     res.status(500).json({ error: "Failed to retrieve adverts", details: error.message });
   }
 };
+
 
 // GET /adverts/:id - Get Single Advert by ID
 export const getAdvertById = async (req, res) => {
