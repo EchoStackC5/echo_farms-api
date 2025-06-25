@@ -3,7 +3,7 @@ export const roles = [
     role: "vendor",
     permissions: ["create_advert", "update_advert", "delete_advert",
       "view_vendor_ads"
-    ]git 
+    ]
   },
   {
     role: "user",
