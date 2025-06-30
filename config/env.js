@@ -7,7 +7,7 @@ export const PORT = process.env.PORT || 1010
 
 export const mongoURI = process.env.MONGO_URI
 
-export const secret = process.env.JWT_SECRET
+export const secret = process.env.JWT_SECRET 
 
 // export const SMTP_USER = process.env.SMTP_USER
 

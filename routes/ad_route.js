@@ -1,4 +1,4 @@
-import {Router} from "express";
+import { Router } from "express";
 import {
   createAdvert,
   getAllAdverts,
@@ -20,6 +20,6 @@ adRouter.post("/adverts", authenticate, hasPermission("create_advert"), multiple
 adRouter.get("/adverts", getAllAdverts);
 adRouter.get("/adverts/:id", getAdvertById);
 adRouter.get("/adverts/vendor/dashboard", authenticate, hasPermission("view_vendor_ads"), getAdvertsByVendor);
-adRouter.patch("/adverts/:id", authenticate, hasPermission("update_advert"), updateAdvert);
+adRouter.patch("/adverts/:id", authenticate, hasPermission("update_advert"), multipleImages.array('images', 5), updateAdvert);
 adRouter.delete("/adverts/:id", authenticate, hasPermission("delete_advert"), deleteAdvert);
 

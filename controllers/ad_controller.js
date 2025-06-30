@@ -29,17 +29,17 @@ export const createAdvert = async (req, res) => {
     expiresAt.setDate(expiresAt.getDate() + planDays[plan]);
 
     //  Get uploaded file URLs from Cloudinary
-  
+
     const uploaded = req.files.map(file => ({
       url: file.path
-  
-      
+
+
     }))
 
 
     // Assign vendor from JWT token
     const vendorId = req.user._id;
-   
+
 
 
     // Create advert
@@ -133,7 +133,13 @@ export const getAdvertsByVendor = async (req, res) => {
 export const updateAdvert = async (req, res) => {
   const { id } = req.params;
   try {
-    const advert = await Advert.findByIdAndUpdate(id, req.body, { new: true });
+    const uploaded = req.files.map(file => ({
+      url: file.path
+    }))
+    const advert = await Advert.findByIdAndUpdate(id, {
+      ...req.body,
+      ...(uploaded.length && { images: uploaded })
+    }, { new: true });
     if (!advert) return res.status(404).json({ error: "Advert not found" });
     res.status(200).json(advert);
   } catch (error) {
